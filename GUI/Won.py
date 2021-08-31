@@ -4,11 +4,10 @@ from PyQt5.QtWidgets import *
 
 class Ui_WinWidget(QWidget):
 
-    def __init__(self, turns: str, score: str, time: str, parent=None):
+    def __init__(self, score: str, time: str, parent=None):
         super().__init__(parent)
 
-        """ passing the winner attributes """
-        self.Turns = turns
+        """ passing the user score """
         self.Score = score
         """ passing time consumed """
         self.Time = time
@@ -65,26 +64,18 @@ class Ui_WinWidget(QWidget):
         # bottom part label
         self.bottomLabel = QLabel(self.card)
         self.bottomLabel.setObjectName(u"bottomLabel")
-        self.bottomLabel.setGeometry(QRect(0, 130, 300, 210))
+        self.bottomLabel.setGeometry(QRect(0, 130, 300, 160))
         self.bottomLabel.setStyleSheet(u"border-bottom-right-radius: 50%;\n"
                                         "border-bottom-left-radius: 50%;\n"
                                         "background-color: rgb(255, 255, 255);")
 
-        # turns label 
-        self.turnsLabel = QLabel(self.card)
-        self.turnsLabel.setObjectName(u"turnsLabel")
-        self.turnsLabel.setGeometry(QRect(60, 170, 58, 23))
-        font1 = QFont()
-        font1.setFamily(u"Lucida Bright")
-        font1.setPointSize(16)
-        self.turnsLabel.setFont(font1)
-        self.turnsLabel.setText(u"Turns")
-        self.turnsLabel.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
         # score label 
         self.scoreLabel = QLabel(self.card)
         self.scoreLabel.setObjectName(u"scoreLabel")
-        self.scoreLabel.setGeometry(QRect(60, 220, 55, 23))
+        self.scoreLabel.setGeometry(QRect(60, 170, 58, 23))
+        font1 = QFont()
+        font1.setFamily(u"Lucida Bright")
+        font1.setPointSize(16)
         self.scoreLabel.setFont(font1)
         self.scoreLabel.setText(u"Score")
         self.scoreLabel.setStyleSheet(u"background-color: rgb(255, 255, 255);")
@@ -92,29 +83,18 @@ class Ui_WinWidget(QWidget):
         # time label 
         self.timeLabel = QLabel(self.card)
         self.timeLabel.setObjectName(u"timeLabel")
-        self.timeLabel.setGeometry(QRect(60, 270, 50, 23))
+        self.timeLabel.setGeometry(QRect(60, 220, 55, 23))
         self.timeLabel.setFont(font1)
         self.timeLabel.setText(u"Time")
         self.timeLabel.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        """ Turns Value """
-        self.turns = QLabel(self.card)
-        self.turns.setObjectName(u"turns")
-        self.turns.setGeometry(QRect(149, 170, 100, 27))
-        font2 = QFont()
-        font2.setPointSize(14)
-        self.turns.setFont(font2)
-        self.turns.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.turns.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-                                  "border: 1px solid black;\n"
-                                  "color: rgb(88, 92, 122);")
-        self.turns.setText(self.Turns)
         
 
         """ Score Value """
         self.score = QLabel(self.card)
         self.score.setObjectName(u"score")
-        self.score.setGeometry(QRect(150, 220, 100, 27))
+        self.score.setGeometry(QRect(149, 170, 100, 27))
+        font2 = QFont()
+        font2.setPointSize(14)
         self.score.setFont(font2)
         self.score.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         self.score.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
@@ -125,7 +105,7 @@ class Ui_WinWidget(QWidget):
         """ Time Value """
         self.time = QLabel(self.card)
         self.time.setObjectName(u"time")
-        self.time.setGeometry(QRect(150, 270, 100, 27))
+        self.time.setGeometry(QRect(150, 220, 100, 27))
         self.time.setFont(font2)
         self.time.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         self.time.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
@@ -133,6 +113,5 @@ class Ui_WinWidget(QWidget):
                                   "color: rgb(88, 92, 122);")
         self.time.setText(self.Time)
                                  
-
 
 

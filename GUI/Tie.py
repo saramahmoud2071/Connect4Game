@@ -2,11 +2,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-class Ui_LoseWidget(QWidget):
+class Ui_TieWidget(QWidget):
 
     def __init__(self, score: str, time: str, parent=None):
         super().__init__(parent)
-        
+
         """ passing the user score """
         self.Score = score
         """ passing time consumed """
@@ -19,6 +19,7 @@ class Ui_LoseWidget(QWidget):
         """ adding window components """
         self.Ui_Components()
 
+
     def Ui_Components(self):
 
         """ background widget """
@@ -26,7 +27,7 @@ class Ui_LoseWidget(QWidget):
         self.widget.setObjectName(u"widget")
         self.widget.setGeometry(QRect(0, 0, 920, 682))
 
-        """ Lose widget """
+        """ Tie widget """
         self.card = QWidget(self.widget)
         self.card.setObjectName(u"card")
         self.card.setGeometry(QRect(310, 170, 300, 340))
@@ -38,27 +39,27 @@ class Ui_LoseWidget(QWidget):
         self.upperLabel.setGeometry(QRect(0, 0, 300, 130))
         self.upperLabel.setStyleSheet(u"border-top-right-radius: 50%;\n"
                                        "border-top-left-radius: 50%;\n"
-                                       "background-color: rgb(255, 51, 54);")
+                                       "background-color: rgb(79, 144, 247);")
 
-        # "You Lost" label
-        self.lost = QLabel(self.card)
-        self.lost.setObjectName(u"lost")
-        self.lost.setGeometry(QRect(100, 50, 140, 46))
+        # "It's a Tie" label
+        self.won = QLabel(self.card)
+        self.won.setObjectName(u"lost")
+        self.won.setGeometry(QRect(120, 55, 135, 46))
         font = QFont()
         font.setFamily(u"Calisto MT")
         font.setPointSize(30)
         font.setItalic(True)
-        self.lost.setFont(font)
-        self.lost.setText(u"You Lost")
-        self.lost.setStyleSheet(u"background-color:rgb(255, 51, 54);\n"
+        self.won.setFont(font)
+        self.won.setText(u"It's a Tie")
+        self.won.setStyleSheet(u"background-color: rgb(79, 144, 247);\n"
                                  "color: white")
 
         # emoji label
         self.emoji = QLabel(self.card)
         self.emoji.setObjectName(u"emoji")
-        self.emoji.setGeometry(QRect(40, 50, 48, 48))
-        self.emoji.setStyleSheet(u"background-color:rgb(255, 51, 54);")
-        self.emoji.setPixmap(QPixmap(u"Icons/icons8-sad-48.png"))
+        self.emoji.setGeometry(QRect(40, 50, 64, 64))
+        self.emoji.setStyleSheet(u"background-color: rgb(79, 144, 247);")
+        self.emoji.setPixmap(QPixmap("Icons/icons8-scale-64.png"))
 
         # bottom part label
         self.bottomLabel = QLabel(self.card)
@@ -111,7 +112,6 @@ class Ui_LoseWidget(QWidget):
                                   "border: 1px solid black;\n"
                                   "color: rgb(88, 92, 122);")
         self.time.setText(self.Time)
-
-
+                                 
 
 
