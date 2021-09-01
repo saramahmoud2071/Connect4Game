@@ -166,17 +166,11 @@ class Ui_MainWindow(QMainWindow):
             self.invalidInput.setText("Invalid Input")
             
 
+
 if __name__ == "__main__":
     App = QApplication(sys.argv)
     window1 = Ui_MainWindow()
     window1.show()
     sys.exit(App.exec_())
-
-
-
-
-        
-        
-        
-
-        
+      
+     
