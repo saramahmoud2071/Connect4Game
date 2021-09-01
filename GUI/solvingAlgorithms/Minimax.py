@@ -5,7 +5,7 @@ from solvingAlgorithms.connected4_heuristic import *
 LENGTH, WIDTH = 8, 8
 
 class Node:
-    children = np.array([])
+    children = []
     parent = None
     state = []
     depth = 0
