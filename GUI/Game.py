@@ -341,7 +341,7 @@ class Ui_GameWindow(QMainWindow):
             area.setAcceptHoverEvents(False)
         
         state = self.gridScene.filledCheckers # AI
-        new_state, new_utility = make_decision(state, self.k, self.pruning) # AI
+        new_state, new_utility = make_decision(state, self.k, self.pruning, self.redScore, self.yellowScore) # AI
         column = self.column_changed(state, new_state) # AI
         dropAreas[column].update(dropAreas[column].boundingRect())
     
