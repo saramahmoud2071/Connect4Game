@@ -4,6 +4,12 @@ from solvingAlgorithms.connected4_heuristic import *
 
 LENGTH, WIDTH = 8, 8
 
+class Node:
+    children = np.array([])
+    parent = None
+    state = []
+    depth = 0
+    
 # Find the right move according to the Minimax search algorithm
 # k is the limit that we will truncate the game tree after K levels evaluating the states using the heuristic function.
 # isPruning is a boolean indicates if we want to use alpha-beta pruning or not
