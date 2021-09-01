@@ -41,6 +41,9 @@ def horizontal4Or3(grid,i,j):
   connected3player=0
   connected3agent=0
 
+  if grid[i][j]== grid[i][j+1] == grid[i][j+2] == grid[i][j+3] == 0:
+    return 0,0,0,0
+
   #connected 4's for the human
   if grid[i][j]== grid[i][j+1] == grid[i][j+2] == grid[i][j+3] == 1:
     connected4player= 1
@@ -81,6 +84,9 @@ def vertical4Or3(grid,i,j):
   connected3player=0
   connected3agent=0
 
+  if grid[i][j]== grid[i-1][j] == grid[i-2][j] == grid[i-3][j] == 0:
+      return 0,0,0,0
+
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i-1][j] == grid[i-2][j] == grid[i-3][j] == 1:
       connected4player= 1
@@ -119,6 +125,8 @@ def rightDiagonal4Or3(grid,i,j):
   connected3player=0
   connected3agent=0
 
+  if grid[i][j]== grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] == 0:
+      return 0,0,0,0
 
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] == 1:
@@ -157,6 +165,9 @@ def leftDiagonal4Or3(grid,i,j):
   connected4agent=0
   connected3player=0
   connected3agent=0
+
+  if grid[i][j]== grid[i+1][j-1] == grid[i+2][j-2] == grid[i+3][j-3] == 0:
+      return 0,0,0,0
 
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i+1][j-1] == grid[i+2][j-2] == grid[i+3][j-3] == 1:
