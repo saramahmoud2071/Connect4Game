@@ -70,17 +70,3 @@ class Grid(QGraphicsScene):
         
        self.checkers = [value for value in self.checkers if value != []]
     
-
-
-    
-
-
-
-
-    
-
-
-
-       
-
-

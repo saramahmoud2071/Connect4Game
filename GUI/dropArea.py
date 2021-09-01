@@ -1,7 +1,6 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-import sys
 
 HUMAN = False
 COMPUTER = True
@@ -76,10 +75,4 @@ class dropArea(QGraphicsItem):
           self.pressed = False  
           self.update()
         
-        
-       
-
-    
-    
-
         
