@@ -32,7 +32,7 @@ def maximize(state, k, isPruning, alpha, beta) :
 # Find the child state with the lowest utility value
 def minimize(state, k, isPruning, alpha, beta) :
     if (terminal_test(state, k)) :
-        return None , eval(state)
+        return (None , eval(state))
     
     min_child, min_utility = (None,10000)
 
@@ -75,5 +75,4 @@ def has_zero(state):
             if state[i][j] == 0:
                 return True
     return False
-
 
