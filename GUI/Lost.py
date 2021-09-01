@@ -4,16 +4,11 @@ from PyQt5.QtWidgets import *
 
 class Ui_LoseWidget(QWidget):
 
-    def __init__(self, score: str, time: str, parent=None):
+    def __init__(self, parent=None):
         super().__init__(parent)
-        
-        """ passing the user score """
-        self.Score = score
-        """ passing time consumed """
-        self.Time = time
 
         """ intializting window attributes """
-        self.setGeometry(QRect(0, 0, 920, 682))
+        self.setGeometry(QRect(0, 0, 960, 682))
         self.setStyleSheet(u"background-color: rgb(0, 0, 0, 0.5);")
 
         """ adding window components """
@@ -24,7 +19,7 @@ class Ui_LoseWidget(QWidget):
         """ background widget """
         self.widget = QWidget(self)
         self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(0, 0, 920, 682))
+        self.widget.setGeometry(QRect(0, 0, 960, 682))
 
         """ Lose widget """
         self.card = QWidget(self.widget)
@@ -99,7 +94,6 @@ class Ui_LoseWidget(QWidget):
         self.score.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
                                   "border: 1px solid black;\n"
                                   "color: rgb(88, 92, 122);")
-        self.score.setText(self.Score)
 
         """ Time Value """
         self.time = QLabel(self.card)
@@ -110,8 +104,12 @@ class Ui_LoseWidget(QWidget):
         self.time.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
                                   "border: 1px solid black;\n"
                                   "color: rgb(88, 92, 122);")
-        self.time.setText(self.Time)
 
+    """ passing the user score """                   
+    def setScore(self, score: str):
+        self.score.setText(score)
 
-
+    """ passing the time consumed """
+    def setTime(self, time: str):
+        self.time.setText(time)
 
