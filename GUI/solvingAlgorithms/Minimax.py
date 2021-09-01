@@ -8,21 +8,26 @@ class Node:
     children = []
     parent = None
     state = []
+    humanScore = 0
+    agentScore = 0
     depth = 0
+    
     
 # Find the right move according to the Minimax search algorithm
 # k is the limit that we will truncate the game tree after K levels evaluating the states using the heuristic function.
 # isPruning is a boolean indicates if we want to use alpha-beta pruning or not
-def make_decision(state, k, isPruning) :
+def make_decision(state, k, isPruning, humanScore, agentScore) :
     root = Node()
     root.state = state
+    root.humanScore = humanScore
+    root.agentScore = agentScore
     new_state = maximize(root, k, isPruning, -10000, 10000)
     return new_state, root
 
 # Find the child state with the highest utility value
 def maximize(node, k, isPruning, alpha, beta) :
     if (terminal_test(node.state, k)) :
-        return (None , eval(node.state))
+        return (None , eval(node))
     
     max_child, max_utility = (None,-10000)
     
@@ -40,7 +45,7 @@ def maximize(node, k, isPruning, alpha, beta) :
 # Find the child state with the lowest utility value
 def minimize(node, k, isPruning, alpha, beta) :
     if (terminal_test(node.state, k)) :
-        return (None , eval(node.state))
+        return (None , eval(node))
     
     min_child, min_utility = (None,10000)
 
@@ -77,8 +82,8 @@ def make_children(node, player) :
     node.children = children
     return children
 
-def eval(state) :
-    return calculateHeuristic(state)
+def eval(node) :
+    return calculateHeuristic(node.state, node.humanScore, node.agentScore)
 
 def has_zero(state):
     for i in range(len(state)):
