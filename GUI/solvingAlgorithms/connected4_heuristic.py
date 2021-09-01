@@ -46,10 +46,10 @@ def horizontal4Or3(grid,i,j):
 
   #connected 4's for the human
   if grid[i][j]== grid[i][j+1] == grid[i][j+2] == grid[i][j+3] == 1:
-    connected4player= 1
+    connected4player= 10
   #calculate no of connected 4's for the agent    
   elif grid[i][j]== grid[i][j+1] == grid[i][j+2] == grid[i][j+3] == 2:
-    connected4agent= 1
+    connected4agent= 10
 
 
   #check connected 3 cases
@@ -89,10 +89,10 @@ def vertical4Or3(grid,i,j):
 
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i-1][j] == grid[i-2][j] == grid[i-3][j] == 1:
-      connected4player= 1
+      connected4player= 10
   #calculate no of connected 4's for the agent    
   elif grid[i][j]== grid[i-1][j] == grid[i-2][j] == grid[i-3][j] == 2:
-      connected4agent= 1
+      connected4agent= 10
  
   #check connected 3 cases
   elif grid[i][j]==0 and grid[i+1][j]!=0:
@@ -130,10 +130,10 @@ def rightDiagonal4Or3(grid,i,j):
 
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] == 1:
-      connected4player= 1
+      connected4player= 10
   #calculate no of connected 4's for the agent    
   elif grid[i][j]== grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] == 2:
-      connected4agent= 1
+      connected4agent= 10
 
   #check connected 3 cases
   elif grid[i][j]==0 and grid[i+1][j]!=0:
@@ -171,10 +171,10 @@ def leftDiagonal4Or3(grid,i,j):
 
   #calculate no of connected 4's for the player
   if grid[i][j]== grid[i+1][j-1] == grid[i+2][j-2] == grid[i+3][j-3] == 1:
-      connected4player= 1
+      connected4player= 10
   #calculate no of connected 4's for the agent    
   elif grid[i][j]== grid[i+1][j+-1] == grid[i+2][j-2] == grid[i+3][j-3] == 2:
-      connected4agent= 1
+      connected4agent= 10
 
   #check connected 3 cases
   elif grid[i][j]==0 and grid[i+1][j]!=0:
