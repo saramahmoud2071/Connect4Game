@@ -55,26 +55,26 @@ def horizontal4Or3(grid,i,j):
 
 
   #check connected 3 cases
-  elif grid[i][j]==0 and grid[i+1][j]!=0 :
+  elif grid[i][j]==0 and grid[i+1][j]!=0 if i+1 < LENGTH else True :
     if grid[i][j+1] == grid[i][j+2] == grid[i][j+3] ==1:
       connected3player= 1
     elif grid[i][j+1] == grid[i][j+2] == grid[i][j+3] ==2:
       connected3agent= 1
 
   elif grid[i][j]==1: 
-    if grid[i][j+1] == grid[i][j+2] == 1 and grid[i][j+3] ==0 and grid[i+1][j+3]!=0 :
+    if grid[i][j+1] == grid[i][j+2] == 1 and grid[i][j+3] ==0 and grid[i+1][j+3]!=0 if i+1 < LENGTH else True :
       connected3player= 1
-    elif  grid[i][j+1] ==0 and  grid[i][j+2] == grid[i][j+3] ==1 and grid[i+1][j+1] !=0:
+    elif  grid[i][j+1] ==0 and  grid[i][j+2] == grid[i][j+3] ==1 and grid[i+1][j+1] !=0 if i+1 < LENGTH else True :
       connected3player=1
-    elif  grid[i][j+1] ==1 and grid[i][j+2] ==0 and grid[i][j+3] ==1 and grid[i+1][j+2] !=0 :
+    elif  grid[i][j+1] ==1 and grid[i][j+2] ==0 and grid[i][j+3] ==1 and grid[i+1][j+2] !=0 if i+1 < LENGTH else True :
       connected3player= 1   
         
   elif grid[i][j]==2: 
-    if grid[i][j+1] == grid[i][j+2] == 2 and grid[i][j+3] ==0 and grid[i+1][j+3] !=0 :
+    if grid[i][j+1] == grid[i][j+2] == 2 and grid[i][j+3] ==0 and grid[i+1][j+3] !=0 if i+1 < LENGTH else True  :
       connected3agent= 1
-    elif  grid[i][j+1] ==0 and  grid[i][j+2] == grid[i][j+3] ==2 and  grid[i+1][j+1] !=0:
+    elif  grid[i][j+1] ==0 and  grid[i][j+2] == grid[i][j+3] ==2 and  grid[i+1][j+1] !=0 if i+1 < LENGTH else True :
       connected3agent=1
-    elif grid[i][j+1] ==2 and grid[i][j+2] ==0 and grid[i][j+3] ==2 and grid[i+1][j+2] !=0 :
+    elif grid[i][j+1] ==2 and grid[i][j+2] ==0 and grid[i][j+3] ==2 and grid[i+1][j+2] !=0 if i+1 < LENGTH else True :
        connected3agent= 1
 
   return connected4player,connected4agent,connected3player,connected3agent
@@ -97,26 +97,26 @@ def vertical4Or3(grid,i,j):
       connected4agent= 10
  
   #check connected 3 cases
-  elif grid[i][j]==0 and grid[i+1][j]!=0:
+  elif grid[i][j]==0 and grid[i+1][j]!=0  if i+1 < LENGTH else True :
     if grid[i-1][j] == grid[i-2][j] == grid[i-3][j] ==1:
       connected3player= 1
     elif grid[i-1][j] == grid[i-2][j] == grid[i-3][j] ==2:
       connected3agent= 1
           
   elif grid[i][j]==1:
-    if grid[i-1][j] == grid[i-2][j] == 1 and grid[i-3][j] ==0 and grid[i-3+1][j] !=0  :
+    if grid[i-1][j] == grid[i-2][j] == 1 and grid[i-3][j] ==0 and grid[i-3+1][j] !=0 if i-3+1 < LENGTH else True  :
       connected3player= 1
-    elif grid[i-1][j] ==0 and  grid[i-2][j] == grid[i-3][j] ==1 and grid[i-1+1][j] !=0 :
+    elif grid[i-1][j] ==0 and  grid[i-2][j] == grid[i-3][j] ==1 and grid[i-1+1][j] !=0 if i-1+1 < LENGTH else True :
       connected3player= 1
-    elif grid[i-1][j] ==1 and grid[i-2][j] ==0 and grid[i-3][j] ==1 and grid[i-2+1][j] !=0:
+    elif grid[i-1][j] ==1 and grid[i-2][j] ==0 and grid[i-3][j] ==1 and grid[i-2+1][j] !=0 if i-2+1 < LENGTH else True :
       connected3player= 1
       
   elif grid[i][j]==2:
-    if grid[i-1][j] == grid[i-2][j] == 2 and grid[i-3][j] ==0 and grid[i-3+1][j] !=0:
+    if grid[i-1][j] == grid[i-2][j] == 2 and grid[i-3][j] ==0 and grid[i-3+1][j] !=0 if i-3+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i-1][j] ==0 and  grid[i-2][j] == grid[i-3][j] ==2 and grid[i-1+1][j] !=0 :
+    elif grid[i-1][j] ==0 and  grid[i-2][j] == grid[i-3][j] ==2 and grid[i-1+1][j] !=0 if i-1+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i-1][j] ==2 and grid[i-2][j] ==0 and grid[i-3][j] ==2 and grid[i-2+1][j] !=0 :
+    elif grid[i-1][j] ==2 and grid[i-2][j] ==0 and grid[i-3][j] ==2 and grid[i-2+1][j] !=0 if i-2+1 < LENGTH else True :
       connected3agent= 1
 
   return connected4player,connected4agent,connected3player,connected3agent
@@ -138,26 +138,26 @@ def rightDiagonal4Or3(grid,i,j):
       connected4agent= 10
 
   #check connected 3 cases
-  elif grid[i][j]==0 and grid[i+1][j]!=0:
+  elif grid[i][j]==0 and grid[i+1][j]!=0 if i+1 < LENGTH else True :
     if grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] ==1:
       connected3player= 1
     elif grid[i+1][j+1] == grid[i+2][j+2] == grid[i+3][j+3] ==2:
       connected3agent= 1
           
   elif grid[i][j]==1:
-    if grid[i+1][j+1] == grid[i+2][j+2] == 1 and grid[i+3][j+3] ==0 and grid[i+3+1][j+3] !=0:
+    if grid[i+1][j+1] == grid[i+2][j+2] == 1 and grid[i+3][j+3] ==0 and grid[i+3+1][j+3] !=0 if i+3+1 < LENGTH else True :
       connected3player= 1
-    elif grid[i+1][j+1] ==0 and  grid[i+2][j+2] == grid[i+3][j+3] ==1 and grid[i+1+1][j+1] !=0:
+    elif grid[i+1][j+1] ==0 and  grid[i+2][j+2] == grid[i+3][j+3] ==1 and grid[i+1+1][j+1] !=0 if i+1+1 < LENGTH else True :
       connected3player= 1
-    elif grid[i+1][j+1] ==1 and grid[i+2][j+2] ==0 and grid[i+3][j+3] ==1 and grid[i+2+1][j+2] !=0:
+    elif grid[i+1][j+1] ==1 and grid[i+2][j+2] ==0 and grid[i+3][j+3] ==1 and grid[i+2+1][j+2] !=0 if i+2+1 < LENGTH else True :
       connected3player= 1
       
   elif grid[i][j]==2:
-    if grid[i+1][j+1] == grid[i+2][j+2] == 2 and grid[i+3][j+3] ==0 and grid[i+3+1][j+3] !=0:
+    if grid[i+1][j+1] == grid[i+2][j+2] == 2 and grid[i+3][j+3] ==0 and grid[i+3+1][j+3] !=0 if i+3+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i+1][j+1] ==0 and  grid[i+2][j+2] == grid[i+3][j+3] ==2 and grid[i+1+1][j+1] !=0:
+    elif grid[i+1][j+1] ==0 and  grid[i+2][j+2] == grid[i+3][j+3] ==2 and grid[i+1+1][j+1] !=0 if i+1+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i+1][j+1] ==2 and grid[i+2][j+2] ==0 and grid[i+3][j+3] ==2 and grid[i+2+1][j+2] !=0:
+    elif grid[i+1][j+1] ==2 and grid[i+2][j+2] ==0 and grid[i+3][j+3] ==2 and grid[i+2+1][j+2] !=0 if i+2+1 < LENGTH else True :
       connected3agent= 1
 
   return connected4player,connected4agent,connected3player,connected3agent
@@ -179,26 +179,26 @@ def leftDiagonal4Or3(grid,i,j):
       connected4agent= 10
 
   #check connected 3 cases
-  elif grid[i][j]==0 and grid[i+1][j]!=0:
+  elif grid[i][j]==0 and grid[i+1][j]!=0 if i+1 < LENGTH else True :
     if grid[i+1][j-1] == grid[i+2][j-2] == grid[i+3][j-3] ==1:
       connected3player= 1
     elif grid[i+1][j-1] == grid[i+2][j-2] == grid[i+3][j-3] ==2:
       connected3agent= 1
           
   elif grid[i][j]==1:
-    if grid[i+1][j-1] == grid[i+2][j-2] == 1 and grid[i+3][j-3] ==0 and grid[i+3+1][j-3] !=0 :
+    if grid[i+1][j-1] == grid[i+2][j-2] == 1 and grid[i+3][j-3] ==0 and grid[i+3+1][j-3] !=0 if i+3+1 < LENGTH else True  :
       connected3player= 1
-    elif grid[i+1][j-1] ==0 and  grid[i+2][j-2] == grid[i+3][j-3] ==1 and  grid[i+1+1][j-1] !=0:
+    elif grid[i+1][j-1] ==0 and  grid[i+2][j-2] == grid[i+3][j-3] ==1 and  grid[i+1+1][j-1] !=0 if i+1+1 < LENGTH else True :
       connected3player= 1
-    elif grid[i+1][j-1] ==1 and grid[i+2][j-2] ==0 and grid[i+3][j-3] ==1 and grid[i+2+1][j-2] !=0 :
+    elif grid[i+1][j-1] ==1 and grid[i+2][j-2] ==0 and grid[i+3][j-3] ==1 and grid[i+2+1][j-2] !=0 if i+2+1 < LENGTH else True :
       connected3player= 1
       
   elif grid[i][j]==2:
-    if grid[i+1][j-1] == grid[i+2][j-2] == 2 and grid[i+3][j-3] ==0 and grid[i+3+1][j-3] !=0 :
+    if grid[i+1][j-1] == grid[i+2][j-2] == 2 and grid[i+3][j-3] ==0 and grid[i+3+1][j-3] !=0 if i+3+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i+1][j-1] ==0 and  grid[i+2][j-2] == grid[i+3][j-3] ==2 and grid[i+1+1][j-1] !=0:
+    elif grid[i+1][j-1] ==0 and  grid[i+2][j-2] == grid[i+3][j-3] ==2 and grid[i+1+1][j-1] !=0 if i+1+1 < LENGTH else True :
       connected3agent= 1
-    elif grid[i+1][j-1] ==2 and grid[i+2][j-2] ==0 and grid[i+3][j-3] ==2 and grid[i+2+1][j-2] !=0  :
+    elif grid[i+1][j-1] ==2 and grid[i+2][j-2] ==0 and grid[i+3][j-3] ==2 and grid[i+2+1][j-2] !=0 if i+2+1 < LENGTH else True  :
       connected3agent= 1
 
   return connected4player,connected4agent,connected3player,connected3agent
