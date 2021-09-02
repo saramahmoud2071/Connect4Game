@@ -238,7 +238,7 @@ class Ui_GameWindow(QMainWindow):
         self.grid.setSceneRect(0, 0, 458, 458)
 
 
-
+        """ Tree label """
         self.treeLabel = QLabel(self)
         self.treeLabel.setObjectName(u"treeLabel")
         self.treeLabel.setGeometry(QRect(680, 10, 110, 24))
@@ -249,11 +249,22 @@ class Ui_GameWindow(QMainWindow):
         self.treeLabel.setFont(font5)
         self.treeLabel.setText(u"Minimax Tree")
 
-        self.tree = QGraphicsView(self)
+
+        """ Minimax Tree """
+        self.tree = Tree(self)
         self.tree.setObjectName(u"tree")
         self.tree.setGeometry(QRect(500, 40, 441, 601))
-        self.treeScene = Tree(self.tree)
-        self.tree.setScene(self.treeScene)
+
+
+        """ Result LAyout """
+        self.winWidget = Ui_WinWidget(self)
+        self.winWidget.hide()
+
+        self.loseWidget = Ui_LoseWidget(self)
+        self.loseWidget.hide()
+
+        self.tieWidget = Ui_TieWidget(self)
+        self.tieWidget.hide()
 
 
     """ Calculating the score of the current state for the current player """
@@ -263,8 +274,8 @@ class Ui_GameWindow(QMainWindow):
         rightDiagonal = 0
         leftDiagonal = 0
 
-        for i in range (0,8):
-            for j in range (0,8):
+        for i in range (8):
+            for j in range (8):
                 # get no of connected 4 horizontally for the current player
                 if j in range (0,5):
                    horizontal += horizontal4(state, player, i, j)
@@ -290,14 +301,17 @@ class Ui_GameWindow(QMainWindow):
         if totalTurns == 64:
             self.time.stop()
             if int(self.redScore.text()) > int(self.yellowScore.text()):
-                winWindow = Ui_WinWidget(self.redScore.text(), self.timer.text())
-                winWindow.show()
-            elif int(self.redScore) > int(self.yellowScore):
-                loseWindow = Ui_LoseWidget(self.redScore.text(), self.timer.text())
-                loseWindow.show()
+                self.winWidget.setScore(self.redScore.text())
+                self.winWidget.setTime(self.timer.text())
+                self.winWidget.show()
+            elif int(self.redScore.text()) < int(self.yellowScore.text()):
+                self.loseWidget.setScore(self.redScore.text())
+                self.loseWidget.setTime(self.timer.text())
+                self.loseWidget.show()
             else:
-                tieWindow = Ui_TieWidget(self.redScore.text(), self.timer.text())
-                tieWindow.show()
+                self.tieWidget.setScore(self.redScore.text())
+                self.tieWidget.setTime(self.timer.text())
+                self.tieWidget.show()
 
         else:
             if self.turn == HUMAN:
@@ -341,15 +355,53 @@ class Ui_GameWindow(QMainWindow):
             area.setAcceptHoverEvents(False)
         
         state = self.gridScene.filledCheckers # AI
-        new_state, new_utility = make_decision(state, self.k, self.pruning, self.redScore, self.yellowScore) # AI
+        decision, root = make_decision(state, self.k, self.pruning) # AI
+        new_state, new_utility = decision
         column = self.column_changed(state, new_state) # AI
-        dropAreas[column].update(dropAreas[column].boundingRect())
+        #self.BFS(root)
+        dropAreas[column].update()
     
     def column_changed(self, state, new_state):
         for i in range(len(state)):
             for j in range(len(state[0])):
                 if state[i][j] != new_state[i][j]:
                     return j
+
+    def BFS(self, intialNode):
+        frontier = [intialNode]
+        explored = set()
+
+        text = "Minimax Tree Nodes:"
+
+        while len(frontier) != 0:
+            node = frontier.pop(0)
+            explored.add(node.state)
+
+            text = text + "parent = \n" + self.state_format(node.parent.sate) 
+            if node.minimax == MAX:
+              text = text + "Max" + "player \n"
+            else:
+              text = text + "Min" + "player \n"
+            text = text + "added to col. " + str(node.change) + "\n"
+            text = text + "utility = " + str(node.utility) + "\n"
+            text = text + "depth = " + str(node.depth) + "\n"
+            text = text + "state = \n" + self.state_format(node.state)
+
+            self.tree.setText(text)
+            
+            for child in node.children:
+                if child not in frontier and child.state not in explored:
+                    frontier.append(child)
+		
+
+    def state_format(self, state):
+        state_format = ""
+        for i in range(8):
+            for j in range(8):
+                state_format = state_format + state[i][j] + " "
+        state_format = state_format + "\n"
+
+        return state_format
 
     def time_conversion(self, time_s):
         minutes = time_s // 60
@@ -374,4 +426,3 @@ class Ui_GameWindow(QMainWindow):
         self.close()
         self.previous.show()
         
-  

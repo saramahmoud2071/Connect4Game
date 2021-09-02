@@ -31,10 +31,10 @@ class dropArea(QGraphicsItem):
         yellowBrush = QBrush(QColor("#f5ec42"), Qt.BrushStyle.SolidPattern)
         
         if self.hovered:
-            painter.setPen(hoverPen)
-            painter.drawRect(self.area)
+           painter.setPen(hoverPen)
+           painter.drawRect(self.area)
 
-        if self.pressed or not self.acceptPress:
+        if self.pressed: 
            column = self.column
            scene = self.scene()
            checkers = scene.checkers[0:8]
@@ -42,19 +42,28 @@ class dropArea(QGraphicsItem):
            filled = scene.filledCheckers
 
            for row in range(7, -1, -1):
-                if filled[row][column] == 0:
-                  player = scene.game.turn
-                  if player == HUMAN:
-                    scene.filledCheckers[row][self.column] = 1
-                    scene.addEllipse(checkersColumn[row], redPen, redBrush)
-                  else:
-                    scene.filledCheckers[row][self.column] = 2
-                    scene.addEllipse(checkersColumn[row], yellowPen, yellowBrush)
+               if filled[row][column] == 0:
+                 scene.filledCheckers[row][self.column] = 1
+                 scene.addEllipse(checkersColumn[row], redPen, redBrush)
+                 break
+        
+           scene.game.take_turns()
+           self.pressed = False
+
+        if not self.acceptPress and not self.acceptHoverEvents():
+           column = self.column
+           scene = self.scene()
+           checkers = scene.checkers[0:8]
+           checkersColumn = checkers[column]
+           filled = scene.filledCheckers
+
+           for row in range(7, -1, -1):
+               if filled[row][column] == 0:
+                  scene.filledCheckers[row][self.column] = 2
+                  scene.addEllipse(checkersColumn[row], yellowPen, yellowBrush)
                   break
         
            scene.game.take_turns()
-                   
-           self.pressed = False
 
 
     def hoverEnterEvent(self, event: 'QGraphicsSceneHoverEvent'):
