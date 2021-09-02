@@ -2,7 +2,7 @@ LENGTH, WIDTH = 8, 8
 
 """ Calculating Heuristic values for terminal states """
 
-def calculateHeuristic(nodegrid):
+def calculateHeuristic(nodegrid, humanScore, agentScore):
   # q: number of connected 4's of the human
   # w: number of connected 4's of the agent
   # e: number of connected 3's of the human
@@ -31,7 +31,9 @@ def calculateHeuristic(nodegrid):
         if j in range (3,8):
           q,w,e,r=leftDiagonal4Or3(nodegrid,i,j)
           heuristic=heuristic+w+r-q-e
-
+          
+  #make the actual score weight equal 1
+  heuristic= heuristic-9*agentScore+9*humanScore 
   return heuristic
 
 
