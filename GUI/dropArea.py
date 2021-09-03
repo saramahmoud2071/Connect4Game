@@ -27,8 +27,6 @@ class dropArea(QGraphicsItem):
 
         redPen = QPen(QColor("#ff0004"))
         redBrush = QBrush(QColor("#ff0004"), Qt.BrushStyle.SolidPattern)
-        yellowPen = QPen(QColor("#f5ec42"))
-        yellowBrush = QBrush(QColor("#f5ec42"), Qt.BrushStyle.SolidPattern)
         
         if self.hovered:
            painter.setPen(hoverPen)
@@ -49,6 +47,11 @@ class dropArea(QGraphicsItem):
         
            scene.game.take_turns()
            self.pressed = False
+
+
+    def paintComputer(self):
+        yellowPen = QPen(QColor("#f5ec42"))
+        yellowBrush = QBrush(QColor("#f5ec42"), Qt.BrushStyle.SolidPattern)
 
         if not self.acceptPress and not self.acceptHoverEvents():
            column = self.column
@@ -84,4 +87,6 @@ class dropArea(QGraphicsItem):
           self.pressed = False  
           self.update()
         
+    def agentEvent(self):
+        self.paintComputer()
         

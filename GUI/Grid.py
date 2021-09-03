@@ -1,6 +1,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+import numpy as np
 
 from dropArea import dropArea
 
@@ -24,7 +25,7 @@ class Grid(QGraphicsScene):
 
         self.dropAreas = []
         self.checkers = []  
-        self.filledCheckers = [[0 for i in range(self.col)] for j in range(self.row)] 
+        self.filledCheckers = np.zeros((self.col,self.row), dtype=int)
         
         self.setBackgroundBrush(QColor("#346eeb"))
 

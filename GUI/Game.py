@@ -355,11 +355,11 @@ class Ui_GameWindow(QMainWindow):
             area.setAcceptHoverEvents(False)
         
         state = self.gridScene.filledCheckers # AI
-        decision, root = make_decision(state, self.k, self.pruning) # AI
-        new_state, new_utility = decision
+        decision, root = make_decision(state, self.k, self.pruning, int(self.redScore.text()), int(self.yellowScore.text())) # AI
+        new_state, new_utility = decision # AI
         column = self.column_changed(state, new_state) # AI
-        #self.BFS(root)
-        dropAreas[column].update()
+        self.BFS(root)
+        dropAreas[column].agentEvent()
     
     def column_changed(self, state, new_state):
         for i in range(len(state)):
@@ -369,15 +369,16 @@ class Ui_GameWindow(QMainWindow):
 
     def BFS(self, intialNode):
         frontier = [intialNode]
-        explored = set()
+        explored = []
 
         text = "Minimax Tree Nodes:"
 
         while len(frontier) != 0:
             node = frontier.pop(0)
-            explored.add(node.state)
+            explored.append(node.state)
 
-            text = text + "parent = \n" + self.state_format(node.parent.sate) 
+            if node.parent != None:
+              text = text + "parent = \n" + self.state_format(node.parent.state) 
             if node.minimax == MAX:
               text = text + "Max" + "player \n"
             else:
@@ -390,16 +391,22 @@ class Ui_GameWindow(QMainWindow):
             self.tree.setText(text)
             
             for child in node.children:
-                if child not in frontier and child.state not in explored:
-                    frontier.append(child)
+                if child not in frontier:
+                    isExplored = False
+                    for eState in explored:
+                        if np.array_equal(eState, child.state):
+                            isExplored = True
+                            break
+                    if not isExplored:
+                       frontier.append(child)
 		
 
     def state_format(self, state):
         state_format = ""
         for i in range(8):
             for j in range(8):
-                state_format = state_format + state[i][j] + " "
-        state_format = state_format + "\n"
+                state_format = state_format + str(state[i][j]) + " "
+            state_format = state_format + "\n"
 
         return state_format
 
@@ -426,3 +433,4 @@ class Ui_GameWindow(QMainWindow):
         self.close()
         self.previous.show()
         
+     
