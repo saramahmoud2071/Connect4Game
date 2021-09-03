@@ -15,26 +15,26 @@ def calculateHeuristic(nodegrid, humanScore, agentScore):
       #get no of connected 4 & 3 horizontally for both players
       if j in range (0,WIDTH-3):
         q,w,e,r=horizontal4Or3(nodegrid,i,j)
-        heuristic=heuristic+w+r+q-e
+        heuristic=heuristic+w+r-q-e
         
       #get no of connected 4 & 3 vertically for both players
       if i in range (3,8):
         q,w,e,r=vertical4Or3(nodegrid,i,j)
-        heuristic=heuristic+w+r+q-e
+        heuristic=heuristic+w+r-q-e
 
       #get no of connected 4 & 3 diagonally for both players
       if i in range(0,LENGTH-3):
         if j in range (0,WIDTH-3):
           q,w,e,r=rightDiagonal4Or3(nodegrid,i,j)
-          heuristic=heuristic+w+r+q-e
+          heuristic=heuristic+w+r-q-e
 
         if j in range (3,8):
           q,w,e,r=leftDiagonal4Or3(nodegrid,i,j)
-          heuristic=heuristic+w+r+q-e
+          heuristic=heuristic+w+r-q-e
           
   #make the actual score weight equal 1
   #heuristic= heuristic-9*agentScore+9*humanScore 
-  heuristic= heuristic-4*agentScore-6*humanScore 
+  heuristic= heuristic-4*agentScore+4*humanScore 
   return heuristic
 
 
