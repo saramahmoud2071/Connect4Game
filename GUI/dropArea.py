@@ -41,7 +41,7 @@ class dropArea(QGraphicsItem):
 
            for row in range(7, -1, -1):
                if filled[row][column] == 0:
-                 scene.filledCheckers[row][self.column] = 1
+                 scene.filledCheckers[row][column] = 1
                  scene.addEllipse(checkersColumn[row], redPen, redBrush)
                  break
         
@@ -62,7 +62,7 @@ class dropArea(QGraphicsItem):
 
            for row in range(7, -1, -1):
                if filled[row][column] == 0:
-                  scene.filledCheckers[row][self.column] = 2
+                  scene.filledCheckers[row][column] = 2
                   scene.addEllipse(checkersColumn[row], yellowPen, yellowBrush)
                   break
         

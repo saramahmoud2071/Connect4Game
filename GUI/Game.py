@@ -344,9 +344,11 @@ class Ui_GameWindow(QMainWindow):
 
     def play_human(self):
         dropAreas = self.gridScene.dropAreas
+        upperRow = self.gridScene.filledCheckers[0]
         for area in dropAreas:
-            area.acceptPress = True
-            area.setAcceptHoverEvents(True)
+            if upperRow[area.column] == 0:
+              area.acceptPress = True
+              area.setAcceptHoverEvents(True)
 
     def play_computer(self):
         dropAreas = self.gridScene.dropAreas
@@ -356,7 +358,7 @@ class Ui_GameWindow(QMainWindow):
         
         state = self.gridScene.filledCheckers # AI
         decision, root = make_decision(state, self.k, self.pruning, int(self.redScore.text()), int(self.yellowScore.text())) # AI
-        new_state, new_utility = decision # AI
+        new_state, new_utility = decision
         column = self.column_changed(state, new_state) # AI
         self.BFS(root)
         dropAreas[column].agentEvent()
@@ -378,7 +380,7 @@ class Ui_GameWindow(QMainWindow):
             explored.append(node.state)
 
             if node.parent != None:
-              text = text + "parent = \n" + self.state_format(node.parent.state) 
+              text = text + "parent = \n" + self.state_format(node.parent.state)  
             if node.minimax == MAX:
               text = text + "Max" + "player \n"
             else:
@@ -387,6 +389,7 @@ class Ui_GameWindow(QMainWindow):
             text = text + "utility = " + str(node.utility) + "\n"
             text = text + "depth = " + str(node.depth) + "\n"
             text = text + "state = \n" + self.state_format(node.state)
+            text = text + "------------------------------------------------ \n"
 
             self.tree.setText(text)
             
@@ -433,4 +436,3 @@ class Ui_GameWindow(QMainWindow):
         self.close()
         self.previous.show()
         
-     
